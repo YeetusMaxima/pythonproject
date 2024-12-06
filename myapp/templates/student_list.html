@@ -1,0 +1,39 @@
+
+
+{% extends 'base.html' %}
+    
+{% block title %}
+    Student Home
+{% endblock %}
+    
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'student_list.css' %}">
+
+<h2>Welcome to the Student List</h2>
+<h1>Student List</h1>
+
+<a href="{% url 'Student_create' %}">Add New Student</a>
+
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Address</th>
+        <th>Phone Number</th>
+        <th>update</th>
+        <th>Actions</th>
+    </tr>
+    {% for student in student_list %}
+    <tr>
+        <td>{{ student.name }}</td>
+        <td>{{ student.address }}</td>
+        <td>{{ student.phone_number }}</td>
+        <td><a href="{% url 'student_update' student.id %}">update</a></td>
+        <td>
+            <button class="delete-button">Delete</button>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}
